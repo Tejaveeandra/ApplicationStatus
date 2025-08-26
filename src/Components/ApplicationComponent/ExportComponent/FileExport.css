@@ -1,0 +1,60 @@
+.export-container {
+  background: #fff;
+    border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 16px;
+  width: 280px;
+    position: absolute;
+  top: 110%;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow */
+}
+
+
+.file-type-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-type-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+.file-type-options {
+  display: flex;
+  background: #f1f3f6;
+  border-radius: 10px;
+  padding: 4px;
+  gap: 6px;
+}
+
+.file-type-btn {
+  flex: 1;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #555;
+  
+}
+
+.file-type-btn.active {
+  background: linear-gradient(135deg, #2d2df0, #4c6ef5);
+  color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+.file-type-btn:hover:not(.active) {
+  background: #e0e7ff;
+  color: #2d2df0;
+}
+

@@ -1,0 +1,159 @@
+/* Wrapper styling */
+.table-wrapper {
+  border-radius: 6px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Table base */
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 7px;
+  border: 1px solid #E6E4F0;
+}
+
+/* Header */
+.checkbox-header {
+  width: 40px;
+  text-align: left;
+  border-bottom: 2px solid #dee2e6;
+  vertical-align: middle;
+}
+
+/* ... (keep all existing styles unchanged) ... */
+
+.table-header-empty {
+  padding: 4px 8px;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Body */
+.table-body td {
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #e5e7eb;
+  color: #252C32 !important;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th:first-child,
+.table td:first-child {
+  border-right: 1px solid #dee2e6;
+}
+
+/* Striped rows */
+.table tbody tr:nth-child(odd) {
+  --bs-table-bg: #FCFCFC !important; /* white for odd rows */
+}
+
+/* ... (keep all existing styles unchanged) ... */
+
+.checkbox-cell {
+  width: 40px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.checkbox-header {
+  border-top-left-radius: 6px;
+}
+
+/* ✅ Custom Checkbox */
+.custom-checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #aaa;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+  vertical-align: middle;
+}
+
+/* ... (keep all existing styles unchanged) ... */
+
+/* Update button */
+.update_btn {
+  padding: 0px 18px;
+  border-radius: 39px;
+  border: 1px solid #D8D8D8;
+  background: #E2E2E2;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Pagination */
+.pagination_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  color: #57606A;
+  font-size: 12px;
+}
+
+/* ... (keep all existing styles unchanged) ... */
+
+.pagination_highlight {
+  font-weight: 600;
+}
+
+.pagination_content_right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination_info {
+  margin-right: 12px;
+}
+
+.pagination_buttons {
+  display: flex;
+}
+
+button.prev_button,
+button.next_button {
+  padding: 4px 12px;
+  border: 1px solid #dee2e6;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button.prev_button {
+  border-right: none;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+button.next_button {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+button.disabled {
+  background-color: #e2e2e2;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* New class for scrollable container */
+.table-container {
+  max-height: 400px; /* Adjust height as needed */
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+}
+
+.table-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

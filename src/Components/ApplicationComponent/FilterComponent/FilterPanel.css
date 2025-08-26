@@ -1,0 +1,192 @@
+
+/* ---------- Filter Panel ---------- */
+.filter_panel {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  width: 350px;
+  padding: 12px;
+  border-radius: 8px;
+  z-index: 1000;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  left: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added shadow */
+}
+
+/* ---------- Typography ---------- */
+.filter_panel__title {
+  font-size: 12px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+/* ---------- Tabs Container ---------- */
+.filter_panel__tabs {
+  display: flex;
+  gap: 8px;
+  background-color: #f0f0f0;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px 0;
+}
+
+.filter_panel__tab_item {
+  flex: 1;
+}
+
+.filter_panel__tab_btn {
+  flex: 1;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #f1f1f1;
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+  width: 100%;
+}
+
+.filter_panel__tab_btn--active {
+  background: #2d4fff;
+  color: #fff;
+}
+
+/* ---------- Tab Content ---------- */
+.filter_panel__tab_content {
+  margin-bottom: 12px;
+}
+
+/* ---------- Form Label ---------- */
+.filter_panel__label {
+  font-size: 12px;
+  font-weight: 400;
+  color: #344054;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ---------- Custom Select Styles ---------- */
+.filter_panel__select {
+  position: relative;
+  border-radius: 10px;
+}
+
+.filter_panel__select_header {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 6px 10px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter_panel__dropdown_icon {
+  width: 12px;
+  transition: transform 0.3s;
+}
+
+.filter_panel__dropdown_icon.open {
+  transform: rotate(180deg);
+}
+
+.filter_panel__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  z-index: 1001;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter_panel__input {
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #101828;
+  padding: 6px 10px;
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.filter_panel__options {
+  max-height: 100px;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.filter_panel__option {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.filter_panel__option:hover {
+  background-color: #f1f1f1;
+}
+
+/* ---------- Student Category ---------- */
+.filter_panel__student_category {
+  margin-top: 8px;
+}
+
+.filter_panel__student_category_label {
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.filter_panel__student_category_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px 40px;
+  margin-top: 6px;
+}
+
+.filter_panel__category_item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- Checkbox Styling ---------- */
+.filter_panel__checkbox {
+  appearance: none; /* Remove default checkbox styling */
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+}
+
+.filter_panel__checkbox:checked {
+  background-color: #a6a6a6; /* Match your original checked background */
+}
+
+.filter_panel__checkbox:checked::after {
+  content: "✓"; /* Unicode for checkmark */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff; /* White tick color */
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.filter_panel__checkbox_label {
+  font-size: 12px;
+  font-weight: 400;
+  color: #2c2c2e;
+}

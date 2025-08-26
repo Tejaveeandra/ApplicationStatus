@@ -1,0 +1,28 @@
+.inputbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inputbox-wrapper label {
+  display: block;
+  font-weight: 400;
+  color: var(--Gray-700, #344054);
+  font-size: 12px;
+}
+
+.input-box {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.2s;
+}
+
+.input-box:focus {
+  border-color: #66afe9;
+  outline: none;
+}

@@ -1,0 +1,135 @@
+.recent-search {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.recent-search__title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.recent-search__cards {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.recent-search__card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px 12px;
+  width: 180px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+}
+
+.recent-search__card:hover {
+  transform: translateY(-2px);
+}
+
+/* Circle Image */
+.recent-search__image {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #ccc;
+  margin: 0 auto 12px;
+  border: 8px solid #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.recent-search__image img {
+  width: 70%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Texts */
+.recent-search__id {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.recent-search__name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.recent-search__campus {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+/* DivisionDesign under campus */
+.recent-search__division {
+  margin: 0 auto 6px;
+}
+.recent-search__division img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Stepper Custom Styles */
+.recent-search__progress {
+  margin: 6px 0 12px;
+  padding: 0 16px;
+}
+
+.MuiStepLabel-label {
+  font-size: 13px;
+  color: #2a45ff;
+}
+
+.MuiStepLabel-label.Mui-active {
+  color: #001db3;
+  font-weight: 500;
+}
+
+.star-shape {
+  width: 28px;
+  height: 28px;
+  fill: #2a45ff;
+}
+
+/* Actions */
+.recent-search__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 10px;
+  padding-top: 8px;
+}
+
+.recent-search__actions button {
+  border: none;
+  background: transparent;
+  color: #2a45ff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.recent-search__actions button:hover {
+  color: #001db3;
+}
+
+.recent-search__no-results {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  padding: 20px;
+}
