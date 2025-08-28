@@ -6,8 +6,7 @@
 
 .status-bar {
   display: flex;
-    gap:-10px
-    
+  gap: -10px;
 }
 
 .status-icon {
@@ -16,7 +15,6 @@
 }
 
 .status-line {
-
   max-width: 63px;
   margin-top: 4px;
 }
@@ -29,8 +27,7 @@
 .status-labels {
   display: flex;
   justify-content: space-between;
-  width: 100%; /* Adjust width to control spacing, can be dynamic based on parent */
-  
+  width: 100%;
 }
 
 .label-container {
@@ -40,20 +37,18 @@
 
 .label-sale {
   font-size: 14px;
- 
-  color: #FF2525; /* Default red for Sale */
+  color: #FF2525;
 }
 
 .label-confirm {
   font-size: 14px;
-
-  color: #FF2525; /* Default red for Confirm */
+  color: #FF2525;
 }
 
 .sold {
-  color: #3425FF; /* Blue when sold */
+  color: #3425FF;
 }
 
 .confirmed {
-  color: #3425FF; /* Blue when confirmed */
+  color: #3425FF;
 }

@@ -6,9 +6,17 @@ import Statusbar from "../../../Widgets/StatusBar/Statusbar";
 const SearchCards = ({ search, data, maxResults = 5, onCardClick }) => {
   // Use the provided data prop
   const displayData = data || [];
+  // Filter by search and exclude "Damaged" and "With PRO" statuses
   const filteredData = search
-    ? displayData.filter((item) => item.applicationNo.includes(search)) // Use applicationNo for consistency
-    : displayData;
+    ? displayData.filter(
+        (item) =>
+          item.applicationNo.includes(search) &&
+          item.status !== "Damaged" &&
+          item.status !== "With PRO"
+      )
+    : displayData.filter(
+        (item) => item.status !== "Damaged" && item.status !== "With PRO"
+      );
 
   const limitedData = filteredData.slice(0, maxResults);
 

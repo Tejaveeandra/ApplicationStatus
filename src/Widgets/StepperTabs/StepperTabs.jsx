@@ -1,5 +1,5 @@
-// src/components/ApplicationStatus/StepperTabs.jsx
 import React from "react";
+import "./StepperTabs.css";
 
 const StepperTabs = ({ steps, activeStep, onStepChange }) => {
   return (

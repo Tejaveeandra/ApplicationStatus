@@ -1,0 +1,208 @@
+
+.general-form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.general-section-box {
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background: #fff;
+  padding: 20px;
+  height: calc(100% - 40px);
+  overflow-y: auto;
+}
+
+.general-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.general-form-row {
+  display: contents;
+}
+
+.general-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.general-category-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.general-gender-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.general-sibling-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.general-category-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.general-category-label-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.general-category-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.general-category-label {
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 25px;
+  padding: 5px 8px;
+  font-size: 0.875rem;
+  color: #4b4b4b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.general-category-active {
+  background: #3425FF;
+  color: #fff;
+  border-color: #3425FF;
+}
+
+.general-category-text-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.general-category-icon {
+  margin: 0;
+}
+
+.general-category-icon img {
+  width: 18px;
+  height: 18px;
+}
+
+.general-category-label:not(.general-category-active) .general-category-icon img {
+  filter: brightness(0);
+}
+
+.general-category-label.general-category-active .general-category-icon img {
+  filter: none;
+}
+
+.general-gender-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.general-gender-label-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.general-gender-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.general-gender-label {
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 25px;
+  padding: 5px 8px;
+  font-size: 0.875rem;
+  color: #4b4b4b;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.general-gender-active {
+  background: #3425FF;
+  color: #fff;
+  border-color: #3425FF;
+}
+
+.general-field-label-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.general-field-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #82808F;
+  white-space: nowrap;
+}
+
+.general-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, #bbb, transparent);
+}
+
+.general-full-width {
+  grid-column: span 3;
+}
+
+.general-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.general-form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.general-form-actions button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 10px;
+  background-color: #3425ff;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+  box-shadow: none;
+  transition: background-color 0.2s ease;
+}
+
+.general-form-actions img {
+  width: 18px;
+  height: 18px;
+}
+
+.general-empty-field {
+  visibility: hidden;
+}

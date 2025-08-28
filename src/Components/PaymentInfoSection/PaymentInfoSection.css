@@ -1,0 +1,168 @@
+
+.payment-info-section {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.payment-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.payment-header-content {
+  display: flex;
+  gap: 1rem;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.payment-special-concession-block {
+  min-width: 220px;
+  text-align: start;
+}
+
+.payment-concession-value {
+  font-weight: bold;
+  margin: 0;
+}
+
+.payment-concession-label {
+  font-size: 0.75rem;
+  color: #000000;
+  font-size: 14px; /* Overwritten by earlier declaration, adjust as needed */
+}
+
+.payment-paymode-line {
+  flex: 1;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.payment-category-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  background-color: #F7F7F7;
+  padding: 10px;
+  border-radius: 24px;
+  border: #D2D2D2 solid 1px;
+}
+
+.payment-category-label {
+  border: none;
+  padding: 5px 8px;
+  font-size: 0.875rem;
+  color: #4b4b4b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: none; /* Ensure no default background */
+}
+
+.payment-category-label.active {
+  background-color: #3425FF;
+  color: #ffffff; /* Ensure white text on active state */
+  font-weight: 700;
+  border-radius: 24px;
+}
+
+/* Remove redundant rule since color is handled by .payment-category-label.active */
+.payment-category-text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+
+}
+.payment-category-label.active .payment-category-text {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* No need for .payment-category-text.active since it's nested in .payment-category-label */
+.payment-field-label-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.payment-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, #bbb, transparent);
+}
+
+.payment-mode-icon-slot {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+}
+
+.payment-form-label {
+  font-weight: 400;
+  color: #344054;
+  font-size: 12px;
+}
+
+.payment-small-label {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.payment-input-group,
+.payment-checkbox-group,
+.payment-inputbox-wrapper {
+  margin-bottom: 1rem;
+}
+
+.payment-error-message {
+  color: red;
+  font-size: 0.75rem;
+}
+
+.payment-app-fee-section {
+  margin-bottom: 1rem;
+}
+
+.payment-label-line-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.payment-form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.payment-empty-field {
+  flex: 1;
+}
+
+.payment-form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.payment-form-row {
+  display: contents;
+}
+
+.payment-fw-semibold {
+  font-weight: 500;
+  color: #82808F;
+  font-size: 14px;
+}

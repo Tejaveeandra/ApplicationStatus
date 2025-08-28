@@ -1,6 +1,6 @@
-// src/components/ApplicationStatus/StatusSelector.jsx
 import React from "react";
 import { Button } from "@mui/material";
+import "./StatusSelector.css";
 
 const StatusSelector = ({ selectedStatus, onStatusSelect }) => {
   const statuses = ["Sale", "Confirmation", "Damaged"];

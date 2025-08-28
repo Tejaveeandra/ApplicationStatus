@@ -19,6 +19,7 @@ const ApplicationStatus = () => {
   const [isFilterApplied, setIsFilterApplied] = useState(false);
   const [filteredData, setFilteredData] = useState([]); // State to hold filtered data from table
   const [showForm, setShowForm] = useState(false); // New state to control form visibility
+  const [selectedCardData, setSelectedCardData] = useState(null); // State to hold selected card data
 
   // Lifted states from FilterPanel
   const [activeTab, setActiveTab] = useState("zone");
@@ -67,7 +68,9 @@ const ApplicationStatus = () => {
   }, [showExport, showFilter]);
 
   // Callback to open form when SearchCard is clicked
-  const handleCardClick = () => {
+  const handleCardClick = (item) => {
+    console.log("Card clicked:", item);
+    setSelectedCardData(item);
     setShowForm(true);
   };
 
@@ -185,7 +188,7 @@ const ApplicationStatus = () => {
       {/* Render Form full page when showForm is true */}
       {showForm && (
         <div className={styles["application-status__form-container"]}>
-          <ApplicationStatusForm onBack={handleBack} /> {/* Pass onBack callback */}
+          <ApplicationStatusForm onBack={handleBack} initialData={selectedCardData} />
         </div>
       )}
     </div>

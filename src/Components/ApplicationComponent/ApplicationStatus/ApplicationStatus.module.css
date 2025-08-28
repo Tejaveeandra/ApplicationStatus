@@ -3,7 +3,7 @@
   width: 100%;
   padding: 0;
   position: relative;
-  height: 600px;
+  height: 635px;
   overflow-y: hidden;
 }
 
@@ -152,6 +152,8 @@
   width: 100%;
   height: 100%; /* Takes full height of .application-status (600px) */
   overflow-y: auto; /* Enable scrolling within the form container */
+  background: #fff;
+  z-index: 10;
 }
 
 .application-status__form-container::-webkit-scrollbar {

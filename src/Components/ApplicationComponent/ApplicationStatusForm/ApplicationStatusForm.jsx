@@ -1,23 +1,47 @@
-
 import React, { useState } from "react";
 import { Button } from "@mui/material";
-import { Formik, Form } from "formik";
+import { Formik, Form, FieldArray } from "formik";
 import ArrowBack from "@mui/icons-material/ArrowBack";
-import StatusSelector from "./StatusSelector";
-import ProgressHeader from "./ProgressHeader";
-import StepperTabs from "./StepperTabs";
-import GeneralInfoSection from "./GeneralInfoSection";
+import StatusSelector from "../../../Widgets/StatusSelector/StatusSelector";
+import ProgressHeader from "../../../Widgets/ProgressHeader/ProgressHeader";
+import StepperTabs from "../../../Widgets/StepperTabs/StepperTabs";
+import GeneralInfoSection from "../../GeneralInfoSection/GeneralInfoSection";
 import ConcessionInfoSection from "./ConcessionInfoSection";
-import AddressInfoSection from "./AddressInfoSection";
-import PaymentInfoSection from "./PaymentInfoSection";
+import AddressInfoSection from "../../AddressInfoSection/AddressInfoSection";
+import PaymentInfoSection from "../../PaymentInfoSection/PaymentInfoSection";
 import "./ApplicationStatusForm.css";
+
+const StatusDetails = ({ status }) => {
+  const details = {
+    Confirmation: [
+     
+    ],
+    Damaged: [
+      { label: "Damage Date", value: "2024-01-10" },
+      { label: "Damage Type", value: "Document Damage" },
+      { label: "Status", value: "Damaged" },
+    ],
+  };
+
+  return (
+    <div className="status-details">
+      <h3>{status} Details</h3>
+      <ul>
+        {details[status]?.map((item, index) => (
+          <li key={index}>
+            <strong>{item.label}:</strong> {item.value}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
   const [activeStep, setActiveStep] = useState(0);
-  const [selectedStatus, setSelectedStatus] = useState(null);
+  const [selectedStatus, setSelectedStatus] = useState("Sale");
   const [showCouponModal, setShowCouponModal] = useState(false);
   const [couponDetails, setCouponDetails] = useState({ mobile: "", code: "" });
-
   const steps = [
     "General Information",
     "Concession Information",
@@ -68,6 +92,13 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
     concessionWritten: "",
     couponMobile: "",
     couponCode: "",
+    doorNo: "",
+    street: "",
+    landmark: "",
+    area: "",
+    pincode: "",
+    district: "",
+    mandal: "",
     payMode: "Cash",
     paymentDate: "",
     amount: "",
@@ -79,7 +110,13 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
     appFeeReceiptNo: "",
   };
 
-  const initialValues = { ...defaultInitialValues, ...initialData };
+  const initialValues = {
+    ...defaultInitialValues,
+    ...initialData,
+    htNo: initialData.applicationNo || initialData.htNo || "",
+    joinedCampus: initialData.campus || initialData.joinedCampus || "",
+    district: initialData.zone || initialData.district || "",
+  };
 
   const validate = (values) => {
     const errors = {};
@@ -87,23 +124,42 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
       if (!values.htNo) errors.htNo = "HT No is required";
       if (!values.studentName) errors.studentName = "Student Name is required";
       if (!values.phoneNumber) errors.phoneNumber = "Phone Number is required";
-      if (values.siblingInformation) {
-        values.siblingInformation.forEach((sibling, i) => {
-          if (!sibling.fullName) errors[`siblingInformation[${i}].fullName`] = "Full Name is required";
-          if (!sibling.relationType) errors[`siblingInformation[${i}].relationType`] = "Relation Type is required";
-        });
-      }
+      if (!values.category) errors.category = "Category is required";
+      if (!values.appType) errors.appType = "App Type is required";
+      if (!values.studentType) errors.studentType = "Student Type is required";
+      if (!values.gender) errors.gender = "Gender is required";
+      if (!values.joinedCampus) errors.joinedCampus = "Joined Campus is required";
+      if (!values.joinInto) errors.joinInto = "Join Into is required";
+      if (!values.course) errors.course = "Course is required";
+      if (!values.courseBatch) errors.courseBatch = "Course Batch is required";
+      if (!values.courseDates) errors.courseDates = "Course Dates is required";
+      if (!values.schoolState) errors.schoolState = "School State is required";
+      if (!values.schoolDistrict) errors.schoolDistrict = "School District is required";
+      if (!values.schoolType) errors.schoolType = "School Type is required";
+     
     }
     if (activeStep === 1 && selectedStatus === "Sale") {
       if (!values.reason) errors.reason = "Reason is required";
+      if (!values.concessionWritten) errors.concessionWritten = "Concession Written is required";
+    }
+    if (activeStep === 2 && selectedStatus === "Sale") {
+      if (!values.doorNo) errors.doorNo = "Door No is required";
+      if (!values.street) errors.street = "Street is required";
+      if (!values.area) errors.area = "Area is required";
+      if (!values.pincode) errors.pincode = "Pincode is required";
+      if (!values.district) errors.district = "District is required";
+      if (!values.mandal) errors.mandal = "Mandal is required";
+      if (!values.city) errors.city = "City is required";
     }
     if (activeStep === 3 && selectedStatus === "Sale") {
+      if (!values.payMode) errors.payMode = "Payment Mode is required";
       if (!values.paymentDate) errors.paymentDate = "Payment Date is required";
       if (!values.amount) errors.amount = "Amount is required";
-      if (values.appFeeReceived && !values.appFeePayDate)
-        errors.appFeePayDate = "Application Fee Pay Date is required";
-      if (values.appFeeReceived && !values.appFeeAmount)
-        errors.appFeeAmount = "Application Fee Amount is required";
+      if (values.appFeeReceived) {
+        if (!values.appFeePayMode) errors.appFeePayMode = "Application Fee Pay Mode is required";
+        if (!values.appFeePayDate) errors.appFeePayDate = "Application Fee Pay Date is required";
+        if (!values.appFeeAmount) errors.appFeeAmount = "Application Fee Amount is required";
+      }
     }
     return errors;
   };
@@ -144,7 +200,7 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
             { label: "Marks", name: "marks", placeholder: "Enter Marks" },
             { label: "Admission Referred By", name: "admissionReferredBy.name", placeholder: "Enter Name" },
             { label: "Quota", name: "camp", type: "select", options: ["", "SC", "ST", "BC", "OC"] },
-            { label: "Sibling Information", name: "siblingInformation", type: "custom" }, // No subFields needed, handled by FieldArray
+            { label: "Sibling Information", name: "siblingInformation", type: "custom" },
           ];
           break;
         case 1:
@@ -161,7 +217,7 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
           break;
         case 2:
           allFields = [
-            { label: "Door No ", name: "doorNo", placeholder: "Enter Door No" },
+            { label: "Door No", name: "doorNo", placeholder: "Enter Door No" },
             { label: "Street", name: "street", placeholder: "Enter Street" },
             { label: "Landmark", name: "landmark", placeholder: "Enter Landmark" },
             { label: "Area", name: "area", placeholder: "Enter Area" },
@@ -173,21 +229,21 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
           break;
         case 3:
           allFields = [
-            { label: "Pay Mode", name: "payMode", type: "custom" },
+            { label: "Application Fee Pay Mode", name: "payMode", type: "custom" },
             { label: "Application Fee Received", name: "appFeeReceived", type: "checkbox" },
-            { label: "Application Fee Pay Mode", name: "appFeePayMode", type: "custom" },
-            { label: "Application Fee Pay Date", name: "appFeePayDate", placeholder: "Select Pay Date" },
-            { label: "Application Fee Amount", name: "appFeeAmount", placeholder: "Enter Amount" },
+            { label: "Application Fee Pay Date", name: "paymentDate", placeholder: "Select Payment Date", type: "date" },
+            { label: "Application Fee Amount", name: "amount", placeholder: "Enter Amount", type: "number" },
+            { label: "Pre Printed Receipt No", name: "prePrintedReceiptNo", placeholder: "Enter Receipt No" },
+            { label: "Pay Mode", name: "appFeePayMode", type: "custom" },
+            { label: "Application Fee Pay Date", name: "appFeePayDate", placeholder: "Select Pay Date", type: "date" },
+            { label: "Application Fee Amount", name: "appFeeAmount", placeholder: "Enter Amount", type: "number" },
             { label: "Pre Printed Receipt No", name: "appFeeReceiptNo", placeholder: "Enter Receipt No" },
           ];
           break;
         default:
           allFields = [];
       }
-    } else {
-      allFields = [];
     }
-
     const groupedFields = [];
     for (let i = 0; i < allFields.length; i += 3) {
       groupedFields.push(allFields.slice(i, i + 3));
@@ -198,18 +254,35 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
     return groupedFields;
   };
 
-  const handleNext = (values, setFieldValue) => {
-    console.log("handleNext called, current step:", activeStep);
-    if (activeStep === 1) {
-      setFieldValue("couponMobile", couponDetails.mobile);
-      setFieldValue("couponCode", couponDetails.code);
-    }
-    if (activeStep < steps.length - 1) {
-      setActiveStep((prev) => prev + 1);
-      console.log("Moving to step:", activeStep + 1);
-    } else {
-      handleSubmit(values);
-    }
+  const handleNext = (values, setFieldValue, validateForm, setTouched) => {
+    validateForm().then((errors) => {
+      if (Object.keys(errors).length === 0) {
+        if (activeStep === 1) {
+          setFieldValue("couponMobile", couponDetails.mobile);
+          setFieldValue("couponCode", couponDetails.code);
+        }
+        if (activeStep < steps.length - 1) {
+          setActiveStep((prev) => prev + 1);
+        } else {
+          handleSubmit(values);
+        }
+      } else {
+        const touchedFields = {};
+        Object.keys(errors).forEach((field) => {
+          touchedFields[field] = true;
+          if (field.includes("siblingInformation")) {
+            const match = field.match(/siblingInformation\[(\d+)\]\.(\w+)/);
+            if (match) {
+              const [, index, subField] = match;
+              if (!touchedFields.siblingInformation) touchedFields.siblingInformation = [];
+              if (!touchedFields.siblingInformation[index]) touchedFields.siblingInformation[index] = {};
+              touchedFields.siblingInformation[index][subField] = true;
+            }
+          }
+        });
+        setTouched(touchedFields);
+      }
+    });
   };
 
   const handleBack = () => {
@@ -227,34 +300,31 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
     setShowCouponModal(false);
   };
 
-  // Prevent direct step change via stepper unless it's the current or previous step
   const handleStepChange = (step) => {
     if (step <= activeStep) {
-      setActiveStep(step); // Allow going back to previous steps
-    } else {
-      console.log("Cannot jump to future steps. Use 'Next' button.");
+      setActiveStep(step);
     }
   };
 
   return (
-    <div className="app-status-container">
-      <Button className="back-btn" onClick={onBack} sx={{ mb: 2 }}>
+    <div className="main-app-status-container">
+      <Button className="main-back-btn" onClick={onBack} sx={{ mb: 2 }}>
         <ArrowBack sx={{ fontSize: 24 }} />
       </Button>
-      <div className="layout-wrapper">
+      <div className="main-layout-wrapper">
         <StatusSelector selectedStatus={selectedStatus} onStatusSelect={setSelectedStatus} />
         {selectedStatus && <ProgressHeader step={activeStep} totalSteps={steps.length} />}
       </div>
-      {selectedStatus && (
+      {selectedStatus === "Sale" ? (
         <Formik
           initialValues={initialValues}
           validate={validate}
           onSubmit={handleSubmit}
           enableReinitialize={true}
         >
-          {({ values, errors, touched, setFieldValue, handleChange }) => (
-            <Form className="application-form">
-              <div className="form-wrapper">
+          {({ values, errors, touched, setFieldValue, handleChange, validateForm, setTouched }) => (
+            <Form className="main-application-form">
+              <div className="main-form-wrapper">
                 <StepperTabs steps={steps} activeStep={activeStep} onStepChange={handleStepChange} />
                 {activeStep === 0 && (
                   <GeneralInfoSection
@@ -267,7 +337,7 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
                     activeStep={activeStep}
                     setActiveStep={setActiveStep}
                     steps={steps}
-                    handleNext={() => handleNext(values, setFieldValue)}
+                    handleNext={() => handleNext(values, setFieldValue, validateForm, setTouched)}
                     handleBack={handleBack}
                   />
                 )}
@@ -287,7 +357,7 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
                     activeStep={activeStep}
                     setActiveStep={setActiveStep}
                     steps={steps}
-                    handleNext={() => handleNext(values, setFieldValue)}
+                    handleNext={() => handleNext(values, setFieldValue, validateForm, setTouched)}
                     handleBack={handleBack}
                   />
                 )}
@@ -302,7 +372,7 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
                     activeStep={activeStep}
                     setActiveStep={setActiveStep}
                     steps={steps}
-                    handleNext={() => handleNext(values, setFieldValue)}
+                    handleNext={() => handleNext(values, setFieldValue, validateForm, setTouched)}
                     handleBack={handleBack}
                   />
                 )}
@@ -313,10 +383,11 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
                     errors={errors}
                     touched={touched}
                     handleChange={handleChange}
+                    setFieldValue={setFieldValue}
                     activeStep={activeStep}
                     setActiveStep={setActiveStep}
                     steps={steps}
-                    handleNext={() => handleNext(values, setFieldValue)}
+                    handleNext={() => handleNext(values, setFieldValue, validateForm, setTouched)}
                     handleBack={handleBack}
                   />
                 )}
@@ -324,6 +395,8 @@ const ApplicationStatusForm = ({ onBack, initialData = {} }) => {
             </Form>
           )}
         </Formik>
+      ) : (
+        <StatusDetails status={selectedStatus} />
       )}
     </div>
   );

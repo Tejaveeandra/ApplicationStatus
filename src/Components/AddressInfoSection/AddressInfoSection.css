@@ -1,39 +1,40 @@
-.form-section {
+
+.address-form-section {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.section-box {
+.address-section-box {
   background: #fff;
   border: 1px solid #e0e0e0;
   padding: 20px;
   border-radius: 12px;
 }
 
-.form-grid {
+.address-form-grid {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.form-row {
+.address-form-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
 
-.empty-field {
+.address-empty-field {
   visibility: hidden; /* keeps alignment */
 }
 
-.form-actions {
+.address-form-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 20px;
 }
 
-.form-actions button {
+.address-form-actions button {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -47,9 +48,12 @@
   transition: background-color 0.2s ease;
 }
 
-
-
-.form-actions img {
+.address-form-actions img {
   width: 18px;
   height: 18px;
+}
+.address-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
 }

@@ -107,14 +107,11 @@ const ApplicationStatusTable = ({
     });
   }
 
-  const statusFilteredData = filteredData.filter(
-    (item) => item.status === "Sold" || item.status === "Confirmed"
-  );
-
+  // Pass all filtered data to parent, not just Sold/Confirmed
   useEffect(() => {
-    if (onDataFilter && JSON.stringify(prevFilteredData.current) !== JSON.stringify(statusFilteredData)) {
-      onDataFilter(statusFilteredData);
-      prevFilteredData.current = statusFilteredData;
+    if (onDataFilter && JSON.stringify(prevFilteredData.current) !== JSON.stringify(filteredData)) {
+      onDataFilter(filteredData);
+      prevFilteredData.current = filteredData;
     }
   }, [search, selectedZone, selectedDgm, selectedCampus, studentCategory, onDataFilter]);
 

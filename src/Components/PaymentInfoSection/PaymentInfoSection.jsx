@@ -1,9 +1,8 @@
-
-import React, { useState } from "react";
-import Inputbox from "../../../Widgets/Inputbox/Input_box";
+import React from "react";
+import Inputbox from "../../Widgets/Inputbox/Input_box";
 import "./PaymentInfoSection.css";
 import { Button } from "@mui/material";
-import TrendingUpIcon from "../../../Asserts/ApplicationStatus/Trending up.svg"; // ✅ Import your SVG
+import TrendingUpIcon from "../../Asserts/ApplicationStatus/Trending up.svg";
 
 const PaymentInfoSection = ({
   fields,
@@ -11,31 +10,29 @@ const PaymentInfoSection = ({
   errors,
   touched,
   handleChange,
+  setFieldValue,
   activeStep,
   setActiveStep,
   steps,
   handleNext,
   handleBack,
 }) => {
-  const [payMode, setPayMode] = useState(values.payMode || "Cash");
-  const [appFeePayMode, setAppFeePayMode] = useState(values.appFeePayMode || "Cash");
-
-  const renderPaymentModes = (selected, setter, name) => {
+  const renderPaymentModes = (name, setFieldValue) => {
+    const selected = values[name] || "Cash";
     const modes = ["Cash", "DD", "Cheque", "Credit/Debit Card"];
 
     return (
-      <div className="category-options">
+      <div className="payment-category-options">
         {modes.map((mode) => (
           <button
             key={mode}
             type="button"
-            className={`category-label ${selected === mode ? "active" : ""}`}
+            className={`payment-category-label ${selected === mode ? "active" : ""}`}
             onClick={() => {
-              setter(mode);
-              handleChange({ target: { name, value: mode } });
+              setFieldValue(name, mode); // Update Formik field directly
             }}
           >
-            <span className="category-text">{mode}</span>
+            <span className="payment-category-text">{mode}</span>
           </button>
         ))}
       </div>
@@ -45,24 +42,23 @@ const PaymentInfoSection = ({
   const renderInput = (field) => {
     if (field.type === "custom") {
       return (
-        <div key={field.name} className="input-group">
-          <div className="field-label-wrapper">
-            <label className="form-label fw-semibold small-label" htmlFor={field.name}>
+        <div key={field.name} className="payment-input-group">
+          <div className="payment-field-label-wrapper">
+            <label className="payment-form-label payment-fw-semibold payment-small-label" htmlFor={field.name}>
               {field.label}
             </label>
-            <div className="line"></div>
+            <div className="payment-line"></div>
           </div>
-          {renderPaymentModes(
-            field.name === "payMode" ? payMode : appFeePayMode,
-            field.name === "payMode" ? setPayMode : setAppFeePayMode,
-            field.name
+          {renderPaymentModes(field.name, setFieldValue)}
+          {touched[field.name] && errors[field.name] && (
+            <span className="payment-error-message">{errors[field.name]}</span>
           )}
         </div>
       );
     } else if (field.type === "checkbox") {
       return (
-        <div key={field.name} className="checkbox-group">
-          <label className="form-label small-label" htmlFor={field.name}>
+        <div key={field.name} className="payment-checkbox-group">
+          <label className="payment-form-label payment-small-label" htmlFor={field.name}>
             {field.label}
           </label>
           <input
@@ -71,12 +67,15 @@ const PaymentInfoSection = ({
             checked={values[field.name]}
             onChange={handleChange}
           />
+          {touched[field.name] && errors[field.name] && (
+            <span className="payment-error-message">{errors[field.name]}</span>
+          )}
         </div>
       );
     } else {
       return (
-        <div key={field.name} className="inputbox-wrapper">
-          <label className="form-label" htmlFor={field.name}>
+        <div key={field.name} className="payment-inputbox-wrapper">
+          <label className="payment-form-label" htmlFor={field.name}>
             {field.label}
           </label>
           <Inputbox
@@ -86,9 +85,10 @@ const PaymentInfoSection = ({
             placeholder={field.placeholder || `Enter ${field.label}`}
             value={values[field.name]}
             onChange={handleChange}
+            error={touched[field.name] && errors[field.name]}
           />
           {touched[field.name] && errors[field.name] && (
-            <span className="error-message">{errors[field.name]}</span>
+            <span className="payment-error-message">{errors[field.name]}</span>
           )}
         </div>
       );
@@ -97,15 +97,13 @@ const PaymentInfoSection = ({
 
   return (
     <div className="payment-info-section">
-      {/* First Header Section */}
       <div className="payment-section-header">
-        <div className="header-content">
-          {fields.flat().map((field) => field.name === "appFeePayMode" && renderInput(field))}
+        <div className="payment-header-content">
+          {fields.flat().map((field) => field.name === "payMode" && renderInput(field))}
         </div>
       </div>
 
-      {/* Grid Section */}
-      <div className="form-grid">
+      <div className="payment-form-grid">
         {fields
           .flat()
           .map(
@@ -113,6 +111,9 @@ const PaymentInfoSection = ({
               field.name !== "payMode" &&
               field.name !== "appFeeReceived" &&
               field.name !== "appFeePayMode" &&
+              field.name !== "appFeePayDate" &&
+              field.name !== "appFeeAmount" &&
+              field.name !== "appFeeReceiptNo" &&
               renderInput(field)
           )
           .reduce((rows, item, index) => {
@@ -121,33 +122,31 @@ const PaymentInfoSection = ({
             return rows;
           }, [])
           .map((row, rowIndex) => (
-            <div key={rowIndex} className="form-row">
+            <div key={rowIndex} className="payment-form-row">
               {row}
               {row.length < 3 &&
                 Array.from({ length: 3 - row.length }).map((_, padIndex) => (
-                  <div key={`pad-${rowIndex}-${padIndex}`} className="empty-field"></div>
+                  <div key={`pad-${rowIndex}-${padIndex}`} className="payment-empty-field"></div>
                 ))}
             </div>
           ))}
       </div>
 
-      {/* Checkbox */}
       {fields.flat().map((field) => field.name === "appFeeReceived" && renderInput(field))}
 
-      {/* Conditional section (only shows if checkbox is checked) */}
       {values.appFeeReceived && (
         <>
-          <div className="app-fee-section">
-            <div className="header-content">
-              {fields.flat().map((field) => field.name === "payMode" && renderInput(field))}
-              <div className="special-concession-block">
-                <h6 className="concession-value">0</h6>
-                <span className="concession-label">Application Special Concession Value</span>
+          <div className="payment-app-fee-section">
+            <div className="payment-header-content">
+              {fields.flat().map((field) => field.name === "appFeePayMode" && renderInput(field))}
+              <div className="payment-special-concession-block">
+                <h6 className="payment-concession-value">0</h6>
+                <span className="payment-concession-label">Application Special Concession Value</span>
               </div>
             </div>
           </div>
 
-          <div className="form-grid">
+          <div className="payment-form-grid">
             {fields
               .flat()
               .map(
@@ -163,18 +162,18 @@ const PaymentInfoSection = ({
                 return rows;
               }, [])
               .map((row, rowIndex) => (
-                <div key={rowIndex} className="form-row">
+                <div key={rowIndex} className="payment-form-row">
                   {row}
                   {row.length < 3 &&
                     Array.from({ length: 3 - row.length }).map((_, padIndex) => (
-                      <div key={`pad-${rowIndex}-${padIndex}`} className="empty-field"></div>
+                      <div key={`pad-${rowIndex}-${padIndex}`} className="payment-empty-field"></div>
                     ))}
                 </div>
               ))}
           </div>
         </>
       )}
-      <div className="form-actions">
+      <div className="payment-form-actions">
         {!values.appFeeReceived ? (
           <Button
             variant="contained"

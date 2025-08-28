@@ -1,6 +1,6 @@
-// src/components/ApplicationStatus/ProgressHeader.jsx
 import React from "react";
 import { Typography } from "@mui/material";
+import "./ProgressHeader.css";
 
 const ProgressHeader = ({ step, totalSteps }) => {
   return (

@@ -1,0 +1,47 @@
+.progress-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: end;
+  margin-bottom: 8px;
+  gap: 6px;
+}
+ 
+.progress-label {
+  color: #666;
+  font-size: 0.8rem;
+  /* align-items: self-start; */
+}
+ 
+.progress-step {
+  color: #1e1eff;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+ 
+.progress-wrapper {
+  width: 100px;
+  margin-left: 8px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  height: 6px;
+  background-color: #e0e0e0;
+}
+ 
+.progress-bar {
+  height: 100%;
+  background-color: #1e1eff;
+  border-radius: 2px;
+}
+.progress-slash {
+  position: absolute;
+  top: 50%;
+  width: 2px;            
+  height: 16px;          
+  background: #fff;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 2;
+}

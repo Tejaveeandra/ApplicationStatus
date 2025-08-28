@@ -1,0 +1,47 @@
+.status-section {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.status-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #252C32;
+  margin-bottom: 0;
+}
+
+.status-instruction {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6E7C87;
+}
+
+.status-options {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  border-radius: 30px;
+  width: 27%;
+  padding: 3px;
+}
+
+.status-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  color: #616161;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.status-btn.active {
+  background: #3425FF;
+  color: #fff;
+}
+
+.status-btn:hover {
+  background: #3425FF;
+  color: #fff;
+}

@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FilterPanel.css";
 import arrowDownIcon from "../../../Asserts/ApplicationStatus/arrow-down.svg";
 
@@ -21,6 +21,22 @@ const FilterPanel = ({
   const [zoneSearch, setZoneSearch] = useState("");
   const [dgmSearch, setDgmSearch] = useState("");
   const [campusSearch, setCampusSearch] = useState("");
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const insidePanel = event.target.closest('[data-filter-panel="true"]');
+      if (!insidePanel) {
+        setIsZoneOpen(false);
+        setIsDgmOpen(false);
+        setIsCampusOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleCategoryChange = (category) => {
     setStudentCategory((prev) => ({
@@ -52,7 +68,7 @@ const FilterPanel = ({
   );
 
   return (
-    <div className="filter_panel">
+    <div className="filter_panel" data-filter-panel="true">
       <h2 className="filter_panel__title">Filter Category</h2>
 
       {/* Tabs */}

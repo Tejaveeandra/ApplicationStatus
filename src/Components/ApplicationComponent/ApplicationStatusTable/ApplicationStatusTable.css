@@ -1,4 +1,8 @@
-/* Status Badge Styles */
+.application-status-table {
+  padding-top: 16px;
+  overflow-y: scroll;
+}
+
 .status-badge {
   padding: 4px 12px;
   border-radius: 20px;
@@ -31,23 +35,18 @@
   border: 1px solid #0C1BA3;
 }
 
-/* Wrapper styling */
 .table-wrapper {
   border-radius: 6px;
   overflow-x: auto;
   overflow-y: hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .table-wrapper::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and Opera */
+  display: none;
 }
 
-/* Table base */
-
-
-/* Header */
 .checkbox-header {
   width: 40px;
   text-align: center;
@@ -71,7 +70,6 @@
   border-bottom: 2px solid #dee2e6;
 }
 
-/* Body */
 .table-body td {
   border-left: none;
   border-right: none;
@@ -89,18 +87,12 @@
   border-right: 1px solid #dee2e6;
 }
 
-/* Striped rows */
 .table tbody tr:nth-child(odd) {
-  --bs-table-bg: #FCFCFC !important; /* white for odd rows */
-  
+  --bs-table-bg: #FCFCFC !important;
 }
 
-/* Existing styles remain unchanged */
-
-/* Update padding for table cells */
 .table-cell {
   padding: 10px;
-
   border-left: none;
   border-right: none;
   border-bottom: 1px solid #e5e7eb;
@@ -112,14 +104,10 @@
   vertical-align: middle;
 }
 
-
-
-/* Optional: Adjust padding for update button cell if needed */
 .table-cell button.update_btn {
-  padding: 6px 18px; /* Adjust button padding to fit within cell */
-  margin: 0; /* Remove any default margin */
+  padding: 6px 18px;
+  margin: 0;
 }
-
 
 .checkbox-cell {
   width: 40px;
@@ -136,26 +124,26 @@
   border-top-left-radius: 6px;
 }
 
-/* Custom Checkbox */
 .custom-checkbox {
   width: 16px;
   height: 16px;
   border: 1.5px solid #aaa;
   border-radius: 3px;
   cursor: pointer;
-  display: inline-block; /* Maintains inline behavior within flex */
+  display: inline-block;
   position: relative;
   background-color: white;
   transition: all 0.2s ease-in-out;
-  margin-left: 10px ; /* Remove any default margin to ensure precise centering */
-  padding: 0; /* Remove any default padding */
-  box-sizing: border-box; /* Include border in width/height calculation */
+  margin-left: 10px;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 .custom-checkbox:checked {
-  background-color: #3425FF; /* Example: Blue when checked */
+  background-color: #3425FF;
   border-color: #3425FF;
 }
-/* Update button */
+
 .update_btn {
   padding: 0px 18px;
   border-radius: 39px;
@@ -163,10 +151,9 @@
   background: #E2E2E2;
   font-size: 14px;
   cursor: pointer;
-  display: inline-block; /* Ensure button respects visibility */
+  display: inline-block;
 }
 
-/* Pagination */
 .pagination_content {
   display: flex;
   justify-content: space-between;
@@ -225,8 +212,4 @@ button.disabled {
   background-color: #e2e2e2;
   color: #888;
   cursor: not-allowed;
-}
-.application-status-table{
-
-  padding-top: 16px;
 }
