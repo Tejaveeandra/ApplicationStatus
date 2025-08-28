@@ -162,7 +162,6 @@ const GeneralInfoSection = ({
                     <div key={index} className="general-gender-container">
                       <div className="general-field-label-wrapper">
                         <span className="general-field-label">{field.label}</span>
-                        <div className="general-line"></div>
                       </div>
                       <div className="general-gender-options">
                         {field.options.map((option, i) => (
